@@ -69,6 +69,10 @@
         .animate-fade-in {
             animation: fade-in 0.8s ease-out;
         }
+        
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 
@@ -92,12 +96,26 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-1">
                     <a href="#home" class="px-4 py-2 text-sm font-medium text-gray-900 hover:text-islamic-green transition-colors">Beranda</a>
-                    <a href="#tentang" class="px-4 py-2 text-sm font-medium text-gray-900 hover:text-islamic-green transition-colors">Tentang</a>
-                    <a href="#jadwal-sholat" class="px-4 py-2 text-sm font-medium text-gray-900 hover:text-islamic-green transition-colors">Jadwal
-                        Sholat</a>
+
+                    <!-- Dropdown untuk Tentang -->
+                    <div class="relative group">
+                        <button class="px-4 py-2 text-sm font-medium text-gray-900 hover:text-islamic-green transition-colors flex items-center">
+                            Tentang
+                            <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-gray-200">
+                            <div class="py-2">
+                                <a href="#tentang" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">Tentang Masjid</a>
+                                <a href="#struktur" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">Struktur Organisasi</a>
+                                <a href="#galeri" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">Galeri</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#jadwal-sholat" class="px-4 py-2 text-sm font-medium text-gray-900 hover:text-islamic-green transition-colors">Jadwal Sholat</a>
                     <a href="#aktivitas" class="px-4 py-2 text-sm font-medium text-gray-900 hover:text-islamic-green transition-colors">Aktivitas</a>
-                    <a href="#struktur" class="px-4 py-2 text-sm font-medium text-gray-900 hover:text-islamic-green transition-colors">Struktur</a>
-                    <a href="#galeri" class="px-4 py-2 text-sm font-medium text-gray-900 hover:text-islamic-green transition-colors">Galeri</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -113,11 +131,24 @@
             <div id="mobile-menu" class="hidden md:hidden pb-4">
                 <div class="flex flex-col space-y-2">
                     <a href="#home" class="px-4 py-2 text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">Beranda</a>
-                    <a href="#tentang" class="px-4 py-2 text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">Tentang</a>
+
+                    <!-- Dropdown untuk Tentang (Mobile) -->
+                    <div class="relative">
+                        <button id="mobile-tentang-btn" class="w-full text-left px-4 py-2 text-gray-900 hover:bg-gray-100 rounded-lg transition-colors flex items-center justify-between">
+                            Tentang
+                            <svg id="mobile-tentang-icon" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="mobile-tentang-menu" class="hidden pl-6 mt-2 space-y-2">
+                            <a href="#tentang" class="block px-4 py-2 text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">Tentang Masjid</a>
+                            <a href="#struktur" class="block px-4 py-2 text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">Struktur Organisasi</a>
+                            <a href="#galeri" class="block px-4 py-2 text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">Galeri</a>
+                        </div>
+                    </div>
+
                     <a href="#jadwal-sholat" class="px-4 py-2 text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">Jadwal Sholat</a>
                     <a href="#aktivitas" class="px-4 py-2 text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">Aktivitas</a>
-                    <a href="#struktur" class="px-4 py-2 text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">Struktur</a>
-                    <a href="#galeri" class="px-4 py-2 text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">Galeri</a>
                 </div>
             </div>
         </div>
@@ -713,6 +744,25 @@
         }
 
         startSlideshow();
+
+        // Mobile Dropdown Toggle
+        const mobileTentangBtn = document.getElementById('mobile-tentang-btn');
+        const mobileTentangMenu = document.getElementById('mobile-tentang-menu');
+        const mobileTentangIcon = document.getElementById('mobile-tentang-icon');
+
+        mobileTentangBtn.addEventListener('click', () => {
+            mobileTentangMenu.classList.toggle('hidden');
+            mobileTentangIcon.classList.toggle('rotate-180');
+        });
+
+        // Close mobile dropdown when clicking a link
+        document.querySelectorAll('#mobile-tentang-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileTentangMenu.classList.add('hidden');
+                mobileTentangIcon.classList.remove('rotate-180');
+                mobileMenu.classList.add('hidden'); // Close the entire mobile menu
+            });
+        });
     </script>
 </body>
 
