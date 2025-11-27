@@ -73,6 +73,150 @@
         .rotate-180 {
             transform: rotate(180deg);
         }
+        /* Styling untuk carousel kegiatan */
+        
+        .activity-carousel {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 300px;
+            margin-bottom: 20px;
+        }
+        
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        /* Keterangan yang muncul di tengah saat hover */
+        
+        .carousel-caption {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-slide:hover .carousel-caption {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            z-index: 10;
+        }
+        
+        .activity-carousel:hover .carousel-nav {
+            opacity: 1;
+        }
+        
+        .carousel-nav:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .carousel-prev {
+            left: 10px;
+        }
+        
+        .carousel-next {
+            right: 10px;
+        }
+        
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            gap: 6px;
+        }
+        
+        .carousel-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .carousel-indicator.active {
+            background: #2d7a5e;
+        }
+        /* Grid layout untuk galeri */
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .gallery-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .activity-info {
+            padding: 15px;
+        }
+        
+        .activity-info h3 {
+            margin: 0 0 10px 0;
+            color: #2d7a5e;
+            font-size: 1.2rem;
+        }
+        
+        .activity-info p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 
@@ -425,7 +569,7 @@
         </div>
     </section>
 
-    <!-- Galeri Section -->
+    <!-- Galeri Section dengan Carousel -->
     <section id="galeri" class="py-20 bg-white scroll-mt-20">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
@@ -433,62 +577,192 @@
                 <p class="text-lg text-gray-600">Momen dari komunitas kami yang dinamis</p>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto">
-
-                <div class="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer shadow-lg">
-                    <img src="/img/pengajian MUI - DMI TK. Kelurahan Tamanjaya(1).jpg" alt="pengajian MUI - DMI TK. Kelurahan Tamanjaya" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <p class="text-white text-lg md:text-xl font-bold text-center px-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            pengajian MUI - DMI TK. Kelurahan Tamanjaya
-                        </p>
+            <div class="gallery-grid">
+                <!-- Kegiatan 1: Pengajian MUI -->
+                <div class="gallery-item">
+                    <div class="activity-carousel" id="carousel-1">
+                        <div class="carousel-track">
+                            <div class="carousel-slide">
+                                <img src="/img/pengajian.jpg" alt="Pengajian MUI - DMI TK. Kelurahan Tamanjaya">
+                                <div class="carousel-caption">
+                                    <h4 class="font-bold text-xl mb-3">Pengajian MUI - DMI TK. Kelurahan Tamanjaya</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="/img/pengajian(2).jpg" alt="Pengajian MUI - DMI TK. Kelurahan Tamanjaya">
+                                <div class="carousel-caption">
+                                    <h4 class="font-bold text-xl mb-3">Pengajian MUI - DMI TK. Kelurahan Tamanjaya</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="/img/pengajian(3).jpg" alt="Pengajian MUI - DMI TK. Kelurahan Tamanjaya">
+                                <div class="carousel-caption">
+                                    <h4 class="font-bold text-xl mb-3">Pengajian MUI - DMI TK. Kelurahan Tamanjaya</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-indicators">
+                            <div class="carousel-indicator active"></div>
+                            <div class="carousel-indicator"></div>
+                            <div class="carousel-indicator"></div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer shadow-lg">
-                    <img src="/img/idul-adha.jpeg" alt="Tasbih" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <p class="text-white text-lg md:text-xl font-bold text-center px-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            Idul Adha
-                        </p>
+                <!-- Kegiatan 2: Idul Adha -->
+                <div class="gallery-item">
+                    <div class="activity-carousel" id="carousel-2">
+                        <div class="carousel-track">
+                            <div class="carousel-slide">
+                                <img src="/img/idul-adha.jpeg" alt="Idul Adha">
+                                <div class="carousel-caption">
+                                    <h4 class="font-bold text-xl mb-3">Idul Adha</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="/img/idul-adha.jpeg" alt="Idul Adha">
+                                <div class="carousel-caption">
+                                    <h4 class="font-bold text-xl mb-3">Idul Adha</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="/img/idul-adha.jpeg" alt="Idul Adha">
+                                <div class="carousel-caption">
+                                    <h4 class="font-bold text-xl mb-3">Idul Adha</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-indicators">
+                            <div class="carousel-indicator active"></div>
+                            <div class="carousel-indicator"></div>
+                            <div class="carousel-indicator"></div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer shadow-lg">
-                    <img src="/img/Tasyakur dan akad pembelian mobil ambulance.jpg" alt="Tasyakur dan akad pembelian mobil ambulance" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <p class="text-white text-lg md:text-xl font-bold text-center px-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            Tasyakur dan akad pembelian mobil ambulance
-                        </p>
+                <!-- Kegiatan 3: Tasyakur Ambulance -->
+                <div class="gallery-item">
+                    <div class="activity-carousel" id="carousel-3">
+                        <div class="carousel-track">
+                            <div class="carousel-slide">
+                                <img src="/img/Tasyakur dan akad pembelian mobil ambulance.jpg" alt="Tasyakur dan akad pembelian mobil ambulance">
+                                <div class="carousel-caption">
+                                    <h4 class="font-bold text-xl mb-3">Tasyakur dan Akad Pembelian Ambulance</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="/img/Tasyakur dan akad pembelian mobil ambulance(2).jpg" alt="Tasyakur dan akad pembelian mobil ambulance">
+                                <div class="carousel-caption">
+                                    <h4 class="font-bold text-xl mb-3">Tasyakur dan Akad Pembelian Ambulance</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="/img/Tasyakur dan akad pembelian mobil ambulance(3).jpg" alt="Tasyakur dan akad pembelian mobil ambulance">
+                                <div class="carousel-caption">
+                                    <h4 class="font-bold text-xl mb-3">Tasyakur dan Akad Pembelian Ambulance</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-indicators">
+                            <div class="carousel-indicator active"></div>
+                            <div class="carousel-indicator"></div>
+                            <div class="carousel-indicator"></div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer shadow-lg">
-                    <img src="/img/1 muharam.jpg" alt="Peringatan 1 Muharram" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <p class="text-white text-lg md:text-xl font-bold text-center px-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            Peringatan 1 Muharram
-                        </p>
+                <!-- Kegiatan 4: 1 Muharram -->
+                <div class="gallery-item">
+                    <div class="activity-carousel" id="carousel-4">
+                        <div class="carousel-track">
+                            <div class="carousel-slide">
+                                <img src="/img/1 muharam.jpg" alt="Peringatan 1 Muharram">
+                                <div class="carousel-caption">
+                                    <h4 class="font-bold text-xl mb-3">Peringatan 1 Muharram</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="/img/1 muharam(2).jpg" alt="Peringatan 1 Muharram">
+                                <div class="carousel-caption">
+                                    <h4 class="font-bold text-xl mb-3">Peringatan 1 Muharram</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="/img/1 muharam(3).jpg" alt="Peringatan 1 Muharram">
+                                <div class="carousel-caption">
+                                    <h4 class="font-bold text-xl mb-3">Peringatan 1 Muharram</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-indicators">
+                            <div class="carousel-indicator active"></div>
+                            <div class="carousel-indicator"></div>
+                            <div class="carousel-indicator"></div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer shadow-lg">
-                    <img src="/img/ramadhan.jpeg" alt="Pertemuan Ramadan" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <p class="text-white text-lg md:text-xl font-bold text-center px-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            Ramadhan Bersama
-                        </p>
+                <!-- Kegiatan 5: Ramadhan -->
+                <div class="gallery-item">
+                    <div class="activity-carousel" id="carousel-5">
+                        <div class="carousel-track">
+                            <div class="carousel-slide">
+                                <img src="/img/maulid(2).jpg" alt="Maulid Nabi">
+                                <div class="carousel-caption">
+                                    <h4 class="font-bold text-xl mb-3">Maulid Nabi</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="/img/maulid.jpg" alt="Maulid Nabi">
+                                <div class="carousel-caption">
+                                    <h4 class="font-bold text-xl mb-3">Maulid Nabi</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="/img/maulid(3).jpg" alt="Maulid Nabi">
+                                <div class="carousel-caption">
+                                    <h4 class="font-bold text-xl mb-3">Maulid Nabi</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-indicators">
+                            <div class="carousel-indicator active"></div>
+                            <div class="carousel-indicator"></div>
+                            <div class="carousel-indicator"></div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer shadow-lg">
-                    <img src="/img/santunan.jpg" alt="Santunan Anak Yatim" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <p class="text-white text-lg md:text-xl font-bold text-center px-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            Santunan Anak Yatim
-                        </p>
+                <!-- Kegiatan 6: Santunan Anak Yatim -->
+                <div class="gallery-item">
+                    <div class="activity-carousel" id="carousel-6">
+                        <div class="carousel-track">
+                            <div class="carousel-slide">
+                                <img src="/img/santunan.jpg" alt="Santunan Anak Yatim">
+                                <div class="carousel-caption">
+                                    <h4 class="font-bold text-xl mb-3">Santunan Anak Yatim</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="/img/santunan(2).jpg" alt="Santunan Anak Yatim">
+                                <div class="carousel-caption">
+                                    <h4 class="font-bold text-xl mb-3">Santunan Anak Yatim</h4>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="/img/santunan(3).jpg" alt="Santunan Anak Yatim">
+                                <div class="carousel-caption">
+                                    <h4 class="font-bold text-xl mb-3">Santunan Anak Yatim</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-indicators">
+                            <div class="carousel-indicator active"></div>
+                            <div class="carousel-indicator"></div>
+                            <div class="carousel-indicator"></div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -764,6 +1038,90 @@
                 mobileTentangIcon.classList.remove('rotate-180');
                 mobileMenu.classList.add('hidden'); // Close the entire mobile menu
             });
+        });
+
+        // Inisialisasi semua carousel
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dapatkan semua carousel
+            const carousels = document.querySelectorAll('.activity-carousel');
+
+            // Inisialisasi setiap carousel
+            carousels.forEach((carousel, index) => {
+                initCarousel(carousel, index);
+            });
+
+            function initCarousel(carousel, carouselIndex) {
+                const track = carousel.querySelector('.carousel-track');
+                const slides = Array.from(track.children);
+                const prevButton = carousel.querySelector('.carousel-prev');
+                const nextButton = carousel.querySelector('.carousel-next');
+                const indicators = Array.from(carousel.querySelectorAll('.carousel-indicator'));
+
+                let currentIndex = 0;
+                let autoSlideInterval;
+
+                // Fungsi untuk memperbarui carousel
+                function updateCarousel() {
+                    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+                    // Update indicators
+                    indicators.forEach((indicator, index) => {
+                        indicator.classList.toggle('active', index === currentIndex);
+                    });
+                }
+
+                // Fungsi untuk pindah ke slide berikutnya
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    updateCarousel();
+                }
+
+                // Fungsi untuk pindah ke slide sebelumnya
+                function prevSlide() {
+                    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    updateCarousel();
+                }
+
+                // Event listeners untuk tombol navigasi
+                // nextButton.addEventListener('click', nextSlide);
+                // prevButton.addEventListener('click', prevSlide);
+
+                // Event listeners untuk indicators
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        currentIndex = index;
+                        updateCarousel();
+                        resetAutoSlide();
+                    });
+                });
+
+                // Fungsi untuk memulai auto slide
+                function startAutoSlide() {
+                    autoSlideInterval = setInterval(nextSlide, 6000); // Ganti slide setiap 4 detik
+                }
+
+                // Fungsi untuk mereset auto slide
+                function resetAutoSlide() {
+                    clearInterval(autoSlideInterval);
+                    startAutoSlide();
+                }
+
+                // Hentikan auto slide saat hover
+                carousel.addEventListener('mouseenter', () => {
+                    clearInterval(autoSlideInterval);
+                });
+
+                // Lanjutkan auto slide saat mouse leave
+                carousel.addEventListener('mouseleave', () => {
+                    startAutoSlide();
+                });
+
+                // Mulai auto slide
+                startAutoSlide();
+
+                // Inisialisasi posisi carousel
+                updateCarousel();
+            }
         });
     </script>
 </body>
